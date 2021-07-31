@@ -1,11 +1,16 @@
 import express from 'express';
 const router = express.Router()
-import {createTodo} from '../controllers/todo/index'
+import {getTodoById, createTodo,getTodo} from '../controllers/todo/index'
 
 // getTodoById
+router.param('todoId',getTodoById)
+
 // createTodo
 router.post('/todos',createTodo)
+
 // getTodo -> view one todo
+router.get('/todos/:todoId',getTodo)
+
 // getAllTodos -> view all todos
 // updateTodoStatus -> mark todo as done
 // sortTasks -> sort task by date
