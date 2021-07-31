@@ -7,7 +7,7 @@ const getTodoById = async (
   req: Request,
   res: Response,
   next: NextFunction,
-  id: any
+  id: ObjectId
 ) : Promise<void> => {
   try {
     const TodoData = await Todo.findById(id);
