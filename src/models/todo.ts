@@ -4,7 +4,7 @@ import {Schema, model} from 'mongoose'
 interface Todo {
     title: string,
     active_state: boolean,
-    end_date : Date
+    end_date : Date,
 }
 
 const TodoSchema = new Schema<Todo>({
@@ -26,6 +26,5 @@ const TodoSchema = new Schema<Todo>({
     timestamps:true
 })
 
-const TodoModel = model<Todo>('Todo', TodoSchema)
+export default model<Todo>('Todo', TodoSchema)
 
-module.exports = TodoModel

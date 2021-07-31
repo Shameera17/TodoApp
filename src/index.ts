@@ -9,7 +9,7 @@ require('dotenv').config()
 const app = express();
 
 // import routes
-
+const TodoRoute = require('./routes/index')
 
 // connect the MongoDb
 const uri : any  = process.env.URI
@@ -27,6 +27,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 // config route middlewares
+app.use('/api',TodoRoute)
 
 // server set up
 
