@@ -1,13 +1,7 @@
+import {ITodo} from './../types/todo'
 import {Schema, model} from 'mongoose'
 
-// interface representing a document in MongoDB
-interface Todo {
-    title: string,
-    active_state: boolean,
-    end_date : Date,
-}
-
-const TodoSchema = new Schema<Todo>({
+const TodoSchema = new Schema<ITodo>({
     title:{
         type: String,
         required: true
@@ -26,5 +20,5 @@ const TodoSchema = new Schema<Todo>({
     timestamps:true
 })
 
-export default model<Todo>('Todo', TodoSchema)
+export default model<ITodo>('Todo', TodoSchema)
 

@@ -31,11 +31,6 @@ app.use('/api',TodoRoute)
 
 // server set up
 
-app.get('/', (req : Request , res: Response)=>{
-    const age : number = 39;
-    res.json({message: "please like the video"})
-})
-
 const port = process.env.PORT
 app.listen(port, () : void => {
     if(!port) console.log("server is not running")
