@@ -1,15 +1,16 @@
 import { NextFunction, Request, Response } from "express";
+import { ObjectId } from "mongoose";
 import Todo from "../../models/todo";
-import {ITodo} from './../../types/todo'
+import { ITodo } from "./../../types/todo";
 // getTodoById
-const getTodoById = (
+const getTodoById = async (
   req: Request,
   res: Response,
   next: NextFunction,
-  id : string
-) => {
+  id: any
+) : Promise<void> => {
   try {
-    const TodoData = Todo.findById(id);
+    const TodoData = await Todo.findById(id);
     req.currentTodo = TodoData;
     next();
   } catch (error) {
@@ -42,8 +43,12 @@ const createTodo = async (req: Request, res: Response): Promise<void> => {
 // getTodo -> view one todo
 
 const getTodo = async (req: Request, res: Response): Promise<void> => {
-  const todo = await req.currentTodo;
-  res.send(todo);
+  try {
+    const todo = await req.currentTodo;
+    res.send(todo);
+  } catch (error) {
+    throw error;
+  }
 };
 
 // getAllTodos -> view all todos
@@ -61,15 +66,14 @@ const removeTodo = async (req: Request, res: Response): Promise<void> => {
   try {
     const id = await req.currentTodo._id;
     const deletedTodo: ITodo | null = await Todo.findByIdAndRemove(id);
-    const allTodos : ITodo[] = await Todo.find()
+    const allTodos: ITodo[] = await Todo.find();
     res.status(200).json({
       message: "Todo deleted",
       todo: deletedTodo,
-      todos: allTodos
-    })
+      todos: allTodos,
+    });
   } catch (error) {
     res.status(400).json({ error: "cannot delete todo" });
-
   }
 };
 
@@ -77,11 +81,14 @@ const removeTodo = async (req: Request, res: Response): Promise<void> => {
 const updateTodoStatus = async (req: Request, res: Response): Promise<void> => {
   try {
     const id = await req.currentTodo._id;
-    const updateTodo : ITodo | null = await Todo.findByIdAndUpdate(id, { $set: { active_state: true } });
+    const state : boolean = true;
+    const updateTodo: ITodo | null = await Todo.findByIdAndUpdate(id, {
+      $set: { active_state: state }
+    });
     res.status(200).json({
       message: "Todo updated",
-      todo: updateTodo
-    })
+      todo: updateTodo,
+    });
   } catch (error) {
     res.status(400).json(error + "cannot update todo");
   }
