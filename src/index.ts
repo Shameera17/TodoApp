@@ -10,6 +10,7 @@ const app = express();
 
 // import routes
 
+
 // connect the MongoDb
 const uri : any  = process.env.URI
 mongoose.connect(uri, {
