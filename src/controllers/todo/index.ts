@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { ObjectId } from "mongoose";
 import Todo from "../../models/todo";
 import { ITodo } from "./../../types/todo";
+import _ from 'lodash'
 // getTodoById
 const getTodoById = async (
   req: Request,
@@ -55,7 +56,8 @@ const getTodo = async (req: Request, res: Response): Promise<void> => {
 const getAllTodos = async (req: Request, res: Response): Promise<void> => {
   try {
     const todos = await Todo.find();
-    res.status(200).send(todos);
+    const reverseTodos = await _.reverse(todos)
+    res.status(200).send(reverseTodos);
   } catch (error) {
     res.status(400).json({ error: "cannot fetch all todo" });
   }
@@ -89,6 +91,8 @@ const updateTodoStatus = async (req: Request, res: Response): Promise<void> => {
       message: "Todo updated",
       todo: updateTodo,
     });
+    
+    
   } catch (error) {
     res.status(400).json(error + "cannot update todo");
   }
@@ -105,6 +109,6 @@ export {
   updateTodoStatus,
 };
 
-// export const functionName = async (req: Request, res: Response) : Promise<void> => {
-
+// -> template
+//  const functionName = async (req: Request, res: Response) : Promise<void> => {
 // }
