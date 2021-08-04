@@ -1,12 +1,33 @@
-Node Express Api
+## Welcome! 👋
 
-0. install typescript globally
-yarn global add typescript
+Todo Application -> Backend
 
-tsc --init
+## Overview
 
-1. install dependancies & type definitions
-yarn add express typescript nodemon ts-node @types/express @types/node
+Built with
 
-2. init yarn
-yarn --init
+- Node 
+- Express
+- MongoDb
+- Dotenv
+- Lodash
+- Mongoose
+- Typescript
+- GitHub
+
+Project structure
+1. ./src/index.ts       -> Todo server
+2. ./src/routes         -> Todo Routes/End Points
+3. ./src/controllers    -> Todo Controllers
+4. ./src/models         -> Todo Model
+
+## Installation
+
+1. save the file locally    ->    Clone the repository
+2. installation             ->    npm install or yarn install
+3. run the Todo app         ->    npm run dev or yarn dev 
+
+
+## Visit repository 
+
+- [GitHub](https://github.com/Shameera17/TodoApp)
