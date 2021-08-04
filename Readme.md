@@ -14,6 +14,7 @@ Built with
 - Mongoose
 - Typescript
 - GitHub
+- MongoDB Atlas
 
 Project structure
 1. ./src/index.ts       -> Todo server
